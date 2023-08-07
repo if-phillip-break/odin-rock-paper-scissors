@@ -36,12 +36,25 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+const paper = document.querySelector('.paper');
+paper.addEventListener('click', () => {
+    playRound("paper", getComputerChoice());
+})
+const rock = document.querySelector('.rock');
+rock.addEventListener('click', () => {
+    playRound("rock", getComputerChoice());
+})
+const scissors = document.querySelector('.scissors');
+scissors.addEventListener('click', () => {
+    playRound("scissors", getComputerChoice());
+})
+
+const container = document.querySelector('body');
+
 function game(){
     let playerScore = 0;
     let computerScore = 0;
-    for (i = 0; i < 5; i++){
-
-        let outcome = playRound(prompt("Choose rock, paper, or scissors: "), getComputerChoice());
+    while (playerScore !== 5 || computerScore !== 5){
 
         switch (outcome) {
             case 1:
@@ -52,8 +65,9 @@ function game(){
                 break;
             default:
         } 
-
-        console.log("You have won " + playerScore + " times, while the computer has won " + computerScore + " times.");
+        const tally = document.createElement('div');
+        tally.textContent = "You have won " + playerScore + " times, while the computer has won " + computerScore + " times."
+        container.appendChild(tally);
     }
 
     if (playerScore > computerScore) {
