@@ -36,25 +36,33 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-const paper = document.querySelector('.paper');
-paper.addEventListener('click', () => {
-    playRound("paper", getComputerChoice());
-})
-const rock = document.querySelector('.rock');
-rock.addEventListener('click', () => {
-    playRound("rock", getComputerChoice());
-})
-const scissors = document.querySelector('.scissors');
-scissors.addEventListener('click', () => {
-    playRound("scissors", getComputerChoice());
-})
 
 const container = document.querySelector('body');
 
 function game(){
     let playerScore = 0;
     let computerScore = 0;
+    const tally = document.createElement('div');
+    tally.style.cssText = "color: black";
     while (playerScore !== 5 || computerScore !== 5){
+
+        let outcome;
+
+        const paper = document.querySelector('.paper');
+        paper.addEventListener('click', () => {
+            outcome = playRound("paper", getComputerChoice());
+            console.log(outcome);
+        })
+        const rock = document.querySelector('.rock');
+        rock.addEventListener('click', () => {
+            outcome = playRound("rock", getComputerChoice());
+            console.log(outcome);
+        })
+        const scissors = document.querySelector('.scissors');
+        scissors.addEventListener('click', () => {
+            outcome = playRound("scissors", getComputerChoice());
+            console.log(outcome);
+        })
 
         switch (outcome) {
             case 1:
@@ -65,18 +73,16 @@ function game(){
                 break;
             default:
         } 
-        const tally = document.createElement('div');
-        tally.textContent = "You have won " + playerScore + " times, while the computer has won " + computerScore + " times."
+        tally.textContent = "You have won " + playerScore + " times, while the computer has won " + computerScore + " times.";
+        tally.textContent = "hi";
         container.appendChild(tally);
     }
 
     if (playerScore > computerScore) {
-        return "You win!";
+        tally.textContent = "You win!";
     } else if (playerScore < computerScore) {
-        return "You Lose!";
+        tally.textContent =  "You Lose!";
     } else {
-        return "It's a tie!";
+        tally.textContent =  "It's a tie!";
     }
 }
-
-console.log(game())
