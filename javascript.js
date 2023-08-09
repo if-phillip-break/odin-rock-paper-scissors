@@ -36,53 +36,71 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-
-const container = document.querySelector('body');
-
 function game(){
     let playerScore = 0;
     let computerScore = 0;
-    const tally = document.createElement('div');
+    const tally = document.querySelector('.tally');
     tally.style.cssText = "color: black";
-    while (playerScore !== 5 || computerScore !== 5){
 
-        let outcome;
+    let outcome;
 
-        const paper = document.querySelector('.paper');
-        paper.addEventListener('click', () => {
-            outcome = playRound("paper", getComputerChoice());
-            console.log(outcome);
-        })
-        const rock = document.querySelector('.rock');
-        rock.addEventListener('click', () => {
-            outcome = playRound("rock", getComputerChoice());
-            console.log(outcome);
-        })
-        const scissors = document.querySelector('.scissors');
-        scissors.addEventListener('click', () => {
-            outcome = playRound("scissors", getComputerChoice());
-            console.log(outcome);
-        })
-
+    const paper = document.querySelector('.paper');
+    paper.addEventListener('click', () => {
+        outcome = playRound("paper", getComputerChoice());
         switch (outcome) {
             case 1:
                 playerScore++;
+                tally.textContent = "You: " + playerScore + " | Computer: " + computerScore;
                 break;
             case 2:
                 computerScore++;
+                tally.textContent = "You: " + playerScore + " | Computer: " + computerScore;
                 break;
             default:
         } 
-        tally.textContent = "You have won " + playerScore + " times, while the computer has won " + computerScore + " times.";
-        tally.textContent = "hi";
-        container.appendChild(tally);
-    }
+    })
+    const rock = document.querySelector('.rock');
+    rock.addEventListener('click', () => {
+        outcome = playRound("rock", getComputerChoice());
+        switch (outcome) {
+            case 1:
+                playerScore++;
+                tally.textContent = "You: " + playerScore + " | Computer: " + computerScore;
+                break;
+            case 2:
+                computerScore++;
+                tally.textContent = "You: " + playerScore + " | Computer: " + computerScore;
+                break;
+            default:
+        } 
+    })
+    const scissors = document.querySelector('.scissors');
+    scissors.addEventListener('click', () => {
+        outcome = playRound("scissors", getComputerChoice());
+        switch (outcome) {
+            case 1:
+                playerScore++;
+                tally.textContent = "You: " + playerScore + " | Computer: " + computerScore;
+                break;
+            case 2:
+                computerScore++;
+                tally.textContent = "You: " + playerScore + " | Computer: " + computerScore;
+                break;
+            default:
+        } 
+    })
 
-    if (playerScore > computerScore) {
-        tally.textContent = "You win!";
-    } else if (playerScore < computerScore) {
-        tally.textContent =  "You Lose!";
-    } else {
-        tally.textContent =  "It's a tie!";
+
+    if (playerScore === 5 || computerScore === 5){
+
+        if (playerScore > computerScore) {
+            tally.textContent = "You win!";
+        } else if (playerScore < computerScore) {
+            tally.textContent =  "You Lose!";
+        } else {
+            tally.textContent =  "It's a tie!";
+        }
     }
 }
+
+game();
